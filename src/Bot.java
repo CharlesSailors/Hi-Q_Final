@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Arrays;
 
 public class Bot {
@@ -190,4 +191,81 @@ public class Bot {
 
         return false;
     }
+
+    ///********/Onward is obsolete code that was in an attempt to get state-space search more optimal. Some
+    ///********/error in recursion happens along the way which does not allow iteration for all states.
+    /*
+    public Board copyBoard(Board board) throws IOException {
+        Board copy = new Board(board.base, false);
+        copy.boardArray = board.boardArray;
+        copy.allPossibleLocations = board.allPossibleLocations;
+        return copy;
+    }
+
+    public int findBoardScore(Board board) {
+        int count = 0;
+        for(int i = 0; i < board.boardArray.length; i++){
+            for(int j = 0; j < board.boardArray[0].length; j++){
+                if(board.boardArray[i][j] == 'o'){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    List<char[][]> playedBoards = new ArrayList<char[][]>();
+
+    public List<int[]> countAllMoves(Board sol) {
+        List<int[]> allMoves = new ArrayList<>();
+        int[][] temp = sol.allPossibleLocations;
+        for (int[] array : temp){
+            for (int[] array2 : temp) {
+
+                if (isValidMove(sol, array[0], array[1], array2[0], array2[1])) {
+                    int[] temporary = new int[4];
+                    temporary[0] = array[0];
+                    temporary[1] = array[1];
+                    temporary[2] = array2[0];
+                    temporary[3] = array2[1];
+                    allMoves.add(temporary);// = temporary;
+                    //sol.validMoves.add(temporary);
+                }else{
+                    System.out.println("not making it to if" + array[0] + array[1] + array2[0] + array2[1]);
+                }
+            }
+        }
+        return allMoves;
+    }
+
+    public List<int[]> recursion(Board board, List<int[]> moveList) throws IOException {
+        if(playedBoards.contains(board.boardArray)){
+            return null;
+        }
+        playedBoards.add(board.boardArray);
+        if(countAllMoves(board).isEmpty()){
+            return moveList;
+        }else{
+            for(int[] move : countAllMoves(board)){
+                List<int[]> newMoveList = new ArrayList<>(moveList);
+                newMoveList.add(move);
+                List<int[]> res = new ArrayList<int[]>();
+                if(recursion(makeFakeMove(copyBoard(board), move[0], move[1], move[2], move[3]), newMoveList) !=null){
+                    res = recursion(makeFakeMove(copyBoard(board), move[0], move[1], move[2], move[3]), newMoveList);
+                }
+                if(!(res.isEmpty())){
+                    return res;
+                }
+                else{
+                    System.out.println("I didn't do it" + moveList);
+                }
+            }
+
+        }
+        System.out.println("Tried my best");
+        return moveList;
+    }
+
+     */
+
 }
